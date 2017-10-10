@@ -3,18 +3,20 @@
     <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
   </head>
   <body>
-    <a-scene>
-      <a-sphere id="balloon" position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+    <a-scene id="scene">
     </a-scene>
     <script>
-      let balloon = document.getElementById("balloon");
-      console.log("test");
-      console.log(balloon.getAttribute("position"));
+      let bElement = '<a-sphere id="balloon" position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>';
+      let balloon = document.createElement('a-sphere');
+      document.getElementById("scene").appendChild(balloon);
+      balloon.setAttribute("radius","1.25");
+      balloon.setAttribute("color","#fb3364");
+      console.log(balloon);
       let startingPosition = -100;
       let endingPosition = 5;
       let z = startingPosition;
       balloon.setAttribute("position",{"x":0,"y":1.25,"z":z});
-      let animationDelay = 50;
+      let animationDelay = 30;
       let direction = 50;
       window.setInterval(function(){
           z += direction * .05;
