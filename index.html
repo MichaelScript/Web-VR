@@ -6,25 +6,34 @@
     <a-scene id="scene">
     </a-scene>
     <script>
-      let bElement = '<a-sphere id="balloon" position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>';
-      let balloon = document.createElement('a-sphere');
-      document.getElementById("scene").appendChild(balloon);
-      balloon.setAttribute("radius","1.25");
-      balloon.setAttribute("color","#fb3364");
-      console.log(balloon);
-      let startingPosition = -100;
-      let endingPosition = 5;
-      let z = startingPosition;
-      balloon.setAttribute("position",{"x":0,"y":1.25,"z":z});
-      let animationDelay = 30;
-      let direction = 50;
-      window.setInterval(function(){
-          z += direction * .05;
-          balloon.setAttribute("position",{"x":0,"y":1.25,"z":z});
-          if(z > 0){
-            z = startingPosition;
-          }
-      },animationDelay);
+      let balloonCount = 5;
+      let xRange = 35;
+      let yRange = 35;
+      for(let i = 0; i < balloonCount; i++){
+        let balloon = document.createElement('a-sphere');
+        document.getElementById("scene").appendChild(balloon);
+        let radius = Math.random() * 5;
+        let xPos = Math.random() * xRange - (xRange / 2.0);
+        let yPos = Math.random() * yRange - (yRange / 2.0);
+        balloon.setAttribute("radius",radius);
+        balloon.setAttribute("color","#fb3364");
+        console.log(balloon);
+        let startingPosition = -100;
+        let endingPosition = 5;
+        let z = startingPosition;
+        balloon.setAttribute("position",{"x":xPos,"y":yPos,"z":z});
+        let animationDelay = 30;
+        let direction = 50;
+        window.setInterval(function(){
+            z += direction * .05;
+            balloon.setAttribute("position",{"x":xPos,"y":yPos,"z":z});
+            if(z > 0){
+              z = startingPosition;
+              xPos = Math.random() * xRange - (xRange / 2.0);
+              yPos = Math.random() * yRange - (yRange / 2.0)
+            }
+        },animationDelay);
+      }
     </script>
   </body>
 </html>
