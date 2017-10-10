@@ -10,15 +10,19 @@
       let balloon = document.getElementById("balloon");
       console.log("test");
       console.log(balloon.getAttribute("position"));
-      let z = 0;
+      let startingPosition = -100;
+      let endingPosition = 5;
+      let z = startingPosition;
+      balloon.setAttribute("position",{"x":0,"y":1.25,"z":z});
+      let animationDelay = 50;
+      let direction = 50;
       window.setInterval(function(){
-        balloon.setAttribute("position",{"x":0,"y":1.25,"z":z});
-        if(z < -5){
-          z += .25;
-        } else{
-          z -= 2;
-        }
-      },500);
+          z += direction * .05;
+          balloon.setAttribute("position",{"x":0,"y":1.25,"z":z});
+          if(z > 0){
+            z = startingPosition;
+          }
+      },animationDelay);
     </script>
   </body>
 </html>
