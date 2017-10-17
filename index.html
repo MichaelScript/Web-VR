@@ -4,7 +4,7 @@
   </head>
   <body>
 
-    <a-scene>
+    <a-scene id="scene">
 
       <a-sphere
       id="balloon"
@@ -26,6 +26,40 @@
       </a-sky>
 
     </a-scene>
+    <script>
+      let balloonCount = 5;
+      let farthestPos = -250;
+      let scene = document.getElementById("scene");
+
+      let ballTexture = "http://farm8.staticflickr.com/7241/6912433542_06fa5fbf83_b.jpg"
+
+    let fireBall = function(){
+      let balloon = document.createElement('a-sphere');
+      scene.appendChild(balloon);
+      let radius = 2;
+      let xPos = 0;
+      let yPos = -5;
+      let animationDelay = 30;
+      balloon.setAttribute("radius",radius);
+      balloon.setAttribute("color","#fb3364");
+      balloon.setAttribute("src",ballTexture)
+      let startingPosition = 0;
+      let endingPosition = 5;
+      let z = startingPosition;
+      balloon.setAttribute("position",{"x":xPos,"y":yPos,"z":z});
+      let direction = 50;
+      let fire = window.setInterval(function(){
+          z -= direction * .1;
+          balloon.setAttribute("position",{"x":xPos,"y":yPos,"z":z});
+          if(z < farthestPos){
+            clearInterval(fire);
+            scene.removeChild(balloon);
+          }
+      },animationDelay);
+    }
+
+    setInterval(fireBall,500);
+    </script>
 
   </body>
 </html>
