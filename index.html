@@ -5,30 +5,22 @@
   <body>
 
     <a-scene id="scene">
-
-      <a-sphere
-      id="balloon"
-      position="0 1.25 -5"
-      radius="1.25"
-      color="#EF2D5E"
-      src="http://farm8.staticflickr.com/7241/6912433542_06fa5fbf83_b.jpg">
-
-      </a-sphere>
-
-      <a-entity
+      <a-box
+      position="0 1.25 -40"
       geometry="primitive: box"
-      material="color: red"
-      src="texture/texture.jpg">
+      height="50"
+      roughness=".5"
+      width="50"
+      material="color: #424242"></a-box>
 
       <a-sky
-      color="#ECECEC"
-      src="http://farm8.staticflickr.com/7241/6912433542_06fa5fbf83_b.jpg">
+      color="#bbb">
       </a-sky>
 
     </a-scene>
     <script>
       let balloonCount = 5;
-      let farthestPos = -250;
+      let farthestPos = -39;
       let scene = document.getElementById("scene");
 
       let ballTexture = "http://farm8.staticflickr.com/7241/6912433542_06fa5fbf83_b.jpg"
@@ -47,18 +39,17 @@
       let endingPosition = 5;
       let z = startingPosition;
       balloon.setAttribute("position",{"x":xPos,"y":yPos,"z":z});
-      let direction = 50;
+      let direction = 5;
       let fire = window.setInterval(function(){
           z -= direction * .1;
           balloon.setAttribute("position",{"x":xPos,"y":yPos,"z":z});
           if(z < farthestPos){
-            clearInterval(fire);
-            scene.removeChild(balloon);
+            direction = -1 * direction;
           }
       },animationDelay);
     }
 
-    setInterval(fireBall,500);
+    setInterval(fireBall,2000);
     </script>
 
   </body>
